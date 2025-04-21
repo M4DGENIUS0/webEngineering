@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Search</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .generate-btn {
+      position: absolute; /* Required for the button to move */
+    }
+  </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+      <div class="nav-title">Quick Cook</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h1>Your <span>Smart Meal Planner</span></h1>
+      <p class="subtext">Type ingredients and get recipes in seconds</p>
+    
+      <div class="input-group">
+        <input type="text" id="searchIngredient" placeholder="e.g., tomatoes, chicken..." />
+      </div>
+      <br>
+      <button class="generate-btn" onclick="searchRecipes('searchIngredient')" id="runawayBtn">Generate</button>
+    </div>
+    
+    
+    
+    <!-- Recipe results -->
+    <div id="results" class="recipe-grid"></div>
+    
+    <!-- Search More button, initially hidden -->
+    <div class="search-more-container" id="searchMoreContainer" style="display: none;">
+      <button id="searchMoreBtn" class="search-more-btn">Search More</button>
+    </div>
+    
+    <!-- Recipe details overlay -->
+    <div id="recipeOverlay" class="recipe-overlay" style="display: none;">
+      <div class="recipe-details">
+        <div class="recipe-header">
+          <h2 id="recipeTitle"></h2>
+          <button onclick="closeOverlay()" class="close-btn">×</button>
+        </div>
+        <img id="recipeImage" alt="Recipe Image">
+        <div class="recipe-info">
+          <p>Category: <span id="recipeCategory"></span></p>
+          <p>Origin: <span id="recipeArea"></span></p>
+        </div>
+        <div class="recipe-instructions">
+          <h3>Instructions</h3>
+          <p id="recipeInstructions"></p>
+        </div>
+        <button onclick="deleteRecipe()" class="delete-btn">Remove Recipe</button>
+      </div>
+    </div>
+    <!-- Loading recipes indicator... -->
+      <div id="loading" class="loading-overlay" style="display: none;">
+        <div class="loading-box">
+          <img src="assets/gif/loading.gif" alt="Loading..." class="loading-gif" />
+          <p>Recipe is being cooked...</p>
+        </div>
+      </div>
+
+  
+
+  <script src="script.js"></script>
+  <script src="js/runawaybutton.js"></script>
+</body>
+</html>

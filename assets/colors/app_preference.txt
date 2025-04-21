@@ -1,0 +1,3 @@
+5783FD --> Nav Bar Color
+1D4ED8 --> Buttons color
+9E9E9E --> hint text color
