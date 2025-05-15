@@ -3,20 +3,32 @@ let currentRecipeId = null;
 let allRecipes = []; // Store all fetched recipes
 let currentPage = 1;
 const recipesPerPage = 6; // Number of recipes to show per page
+function showCustomAlert(message) {
+  const alertBox = document.getElementById("customAlert");
+  if (!alertBox) return;
+
+  alertBox.querySelector("p").textContent = message;
+  alertBox.style.display = "block";
+
+  setTimeout(() => {
+    alertBox.style.display = "none";
+  }, 2500);
+}
 
 async function searchRecipes(inputId) {
-  const ingredient = document.getElementById(inputId).value;
-  if (!ingredient) return alert("Please enter an ingredient!");
+  const ingredient = document.getElementById(inputId).value.trim();
+  if (!ingredient) {
+    showCustomAlert("Please enter an ingredient!");
+    return;
+  }
 
   document.getElementById("loading").style.display = "block";
-  
-  // If you have a search box element with the search-box class
+
   const searchBox = document.querySelector(".search-box");
   if (searchBox) {
     searchBox.classList.add("search-box-top");
   }
 
-  // Reset pagination
   currentPage = 1;
 
   setTimeout(async () => {
@@ -25,29 +37,26 @@ async function searchRecipes(inputId) {
       const data = await response.json();
 
       document.getElementById("loading").style.display = "none";
-      
+
       if (!data.meals) {
-        document.getElementById("results").innerHTML = "<p class='no-results'>No recipes found. Try another ingredient!</p>";
+        showCustomAlert("No recipes found. Try another ingredient!");
+        document.getElementById("results").innerHTML = "";
         document.getElementById("searchMoreContainer").style.display = "none";
         return;
       }
-      
-      // Store all recipes
+
       allRecipes = data.meals;
-      
-      // Display first page
       displayRecipePage(1);
-      
-      // Show the search more button if there are more pages
       updateSearchMoreButton();
 
     } catch (error) {
-      alert("Error fetching recipes");
       console.error(error);
       document.getElementById("loading").style.display = "none";
+      showCustomAlert("Error fetching recipes");
     }
   }, 1000);
 }
+
 
 function displayRecipePage(page) {
   currentPage = page;
@@ -93,6 +102,7 @@ function loadMoreRecipes() {
 }
 
 function createRecipeCard(meal) {
+  console.log("the function is call inside the createRecipeCard function",meal);
   const mealDiv = document.createElement("div");
   mealDiv.classList.add("recipe-card");
   mealDiv.id = `recipe-${meal.idMeal}`;

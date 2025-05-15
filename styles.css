@@ -11,15 +11,37 @@
   color: #333;
   background-image: url('assets/images/bg.png');
 } */
+
+
+.search-box-top {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 body, html {
+
+
+
+
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+    overflow-y: auto;
+    /* Ensure vertical scrolling */
   font-family: Arial, sans-serif;
-  min-height: 100vh;
+  
   margin: 0;
   padding: 0;
   background: #f7f8fa url('assets/images/bg.png') no-repeat center center fixed;
   background-size: cover;
   color: #333;
   display: block;
+}
+.flex-box{
+  display: flex;;
 }
 .container {
   text-align: center;
@@ -116,11 +138,11 @@ button {
 
 .generate-btn {
   /* Remove absolute positioning to keep it in document flow */
-  position: aboslute;
+ 
   padding: 12px 40px;
   font-size: 18px;
   cursor: pointer;
-  margin-top: 60px; /* Add space between input and button */
+  margin-top: 20px; /* Add space between input and button */
   transition: background-color 0.3s ease;
 }
 button:hover {
@@ -366,9 +388,7 @@ button:hover {
   margin-top: 4px;
 }
 
-.recipe-ingredients {
-  padding: 15px;
-}
+
 
 .ingredient-item {
   display: flex;
@@ -456,8 +476,8 @@ button:hover {
 
 .recipe-details {
   background-color: white;
-  width: 90%;
-  max-width: 600px;
+max-width: 90vw;
+
   max-height: 90vh;
   border-radius: 12px;
   overflow-y: auto;
@@ -604,12 +624,12 @@ button:hover {
 }
 
 .loading-overlay {
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: 100px;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(255 255 255 / 13%);;
   display: grid; 
   place-items: center; 
   z-index: 1000;
@@ -644,6 +664,103 @@ button:hover {
   transform: scale(0.9);
 }
 
+
+
+
+
+
+/* Base fix */
+#recipeOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow-y: auto;
+  /* enables scroll if content is long */
+  z-index: 1000;
+}
+
+.recipe-details {
+  background-color: #fff;
+  margin: 40px auto;
+  max-width: 800px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* Flex row default */
+.flex-box {
+  display: flex;
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  .recipe-details {
+    width: 95%;
+    max-width: 95%;
+    padding: 15px;
+  }
+
+  .flex-box {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .recipeImage1 img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .r1 {
+    width: 100%;
+  }
+
+  .recipe-ingredients,
+  .recipe-info,
+  .recipe-instructions {
+    padding: 10px 0;
+  }
+
+  .recipe-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .recipe-header h2 {
+    font-size: 1.3rem;
+  }
+
+  .close-btn {
+    align-self: flex-end;
+    font-size: 1.5rem;
+  }
+
+  .delete-btn {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .recipe-details {
+    padding: 10px;
+  }
+
+  .recipe-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .close-btn {
+    font-size: 1.3rem;
+  }
+
+  .delete-btn {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}
 /* Animation for new recipe cards */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
