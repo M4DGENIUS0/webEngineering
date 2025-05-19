@@ -1,379 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recipe Search</title>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    .custom-alert {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #ffdddd;
-      color: #a94442;
-      padding: 20px 30px;
-      border: 1px solid #a94442;
-      border-radius: 8px;
-      font-size: 16px;
-      z-index: 9999;
-      display: none;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .recipe-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow-y: auto;
-    }
-
-    .recipe-details {
-      background-color: #fff;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 900px;
-      padding: 25px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      position: relative;
-    }
-
-    .recipe-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 15px;
-    }
-
-    .recipe-header h2 {
-      margin: 0;
-      color: #333;
-      font-size: 28px;
-    }
-
-    .close-btn {
-      position: absolute;
-      right: -16px;
-      top: -5px;
-      background: none;
-      border: none;
-      font-size: 28px;
-      cursor: pointer;
-      color: #777;
-      transition: color 0.3s;
-    }
-
-    .close-btn:hover {
-      color: #333;
-    }
-
-    .flex-box {
-      display: flex;
-      gap: 30px;
-    }
-
-    .recipeImage1 {
-      flex: 1;
-    }
-
-    .recipeImage1 img {
-      width: 100%;
-      height: 60vh;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .r1 {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-
-    }
-
-    .recipe-ingredients h3,
-    .recipe-instructions h3 {
-      margin-top: 0;
-      color: #444;
-      font-size: 22px;
-      border-bottom: 2px solid #f0f0f0;
-      padding-bottom: 8px;
-    }
-
-    .recipe-ingredients ul {
-      padding-left: 20px;
-      margin: 15px 0;
-    }
-
-    .recipe-ingredients li {
-      margin-bottom: 8px;
-      color: #555;
-    }
-
-    .recipe-info {
-      background-color: #f9f9f9;
-
-      border-radius: 8px;
-    }
-
-    .recipe-info p {
-      margin: 5px 0;
-      color: #555;
-    }
-
-    .recipe-instructions p {
-      font-size: 11px;
-      color: #555;
-      line-height: 1;
-      white-space: pre-line;
-    }
-
-    .delete-btn {
-      background-color: #e74c3c;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 20px;
-      transition: background-color 0.3s;
-    }
-
-    .delete-btn:hover {
-      background-color: #c0392b;
-    }
-
-
-
-
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background-color: #234298;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .nav-title {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-    }
-
-    .nav-links li {
-      margin-left: 2rem;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: #333;
-    }
-
-    /* Hamburger menu - hidden by default */
-    .hamburger {
-      display: none;
-      cursor: pointer;
-    }
-
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background-color: #333;
-      margin: 5px;
-      transition: all 0.3s ease;
-    }
-
-    /* Mobile styles */
-    @media (max-width: 768px) {
-      .nav-links {
-        position: absolute;
-        right: 0;
-        top: 70px;
-        background-color: #fff;
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem 0;
-        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
-        transform: translateY(-150%);
-        transition: transform 0.5s ease-in;
-        z-index: 100;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Search</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .custom-alert {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffdddd;
+        color: #a94442;
+        padding: 20px 30px;
+        border: 1px solid #a94442;
+        border-radius: 8px;
+        font-size: 16px;
+        z-index: 9999;
+        display: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
 
-      .nav-links.active {
-        transform: translateY(0);
+      .recipe-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow-y: auto;
+      }
+
+      .recipe-details {
+        background-color: #fff;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 900px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        position: relative;
+      }
+
+      .recipe-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+      }
+
+      .recipe-header h2 {
+        margin: 0;
+        color: #333;
+        font-size: 28px;
+      }
+
+      .close-btn {
+        position: absolute;
+        right: -16px;
+        top: -5px;
+        background: none;
+        border: none;
+        font-size: 28px;
+        cursor: pointer;
+        color: #777;
+        transition: color 0.3s;
+      }
+
+      .close-btn:hover {
+        color: #333;
+      }
+
+      .flex-box {
+        display: flex;
+        gap: 30px;
+      }
+
+      .recipeImage1 {
+        flex: 1;
+      }
+
+      .recipeImage1 img {
+        width: 100%;
+        height: 60vh;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .r1 {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .recipe-ingredients h3,
+      .recipe-instructions h3 {
+        margin-top: 0;
+        color: #444;
+        font-size: 22px;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+      }
+
+      .recipe-ingredients ul {
+        padding-left: 20px;
+        margin: 15px 0;
+      }
+
+      .recipe-ingredients li {
+        margin-bottom: 8px;
+        color: #555;
+      }
+
+      .recipe-info {
+        background-color: #f9f9f9;
+
+        border-radius: 8px;
+      }
+
+      .recipe-info p {
+        margin: 5px 0;
+        color: #555;
+      }
+
+      .recipe-instructions p {
+        font-size: 11px;
+        color: #555;
+        line-height: 1;
+        white-space: pre-line;
+      }
+
+      .delete-btn {
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+      }
+
+      .delete-btn:hover {
+        background-color: #c0392b;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: #234298;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+      }
+
+      .nav-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
       }
 
       .nav-links li {
-        margin: 1rem 0;
+        margin-left: 2rem;
       }
 
+      .nav-links a {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #1d4ed8;
+        color: white;
+        text-decoration: none;
+        border-radius: 12px;
+        transition: background-color 0.3s;
+      }
+
+      /* Hamburger menu - hidden by default */
       .hamburger {
-        display: block;
+        display: none;
+        cursor: pointer;
       }
-    }
 
-    /* Hamburger animation */
-    .hamburger.active .line1 {
-      transform: rotate(-45deg) translate(-5px, 6px);
-    }
-
-    .hamburger.active .line2 {
-      opacity: 0;
-    }
-
-    .hamburger.active .line3 {
-      transform: rotate(45deg) translate(-5px, -6px);
-    }
-
-
-
-    @media (max-width: 768px) {
-      .search-box-top {
-        position: static;
-        /* allow it to scroll naturally */
-        transform: none;
-        margin-top: 20px;
+      .hamburger div {
+        width: 25px;
+        height: 3px;
+        background-color: #333;
+        margin: 5px;
+        transition: all 0.3s ease;
       }
-    }
 
+      /* Mobile styles */
+      @media (max-width: 768px) {
+        .nav-links {
+          position: absolute;
+          right: 0;
+          top: 70px;
+          background-color: #fff;
+          width: 100%;
+          flex-direction: column;
+          align-items: center;
+          padding: 1rem 0;
+          box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+          transform: translateY(-150%);
+          transition: transform 0.5s ease-in;
+          z-index: 100;
+        }
 
+        .nav-links.active {
+          transform: translateY(0);
+        }
 
+        .nav-links li {
+          margin: 1rem 0;
+        }
 
+        .hamburger {
+          display: block;
+        }
+      }
 
+      /* Hamburger animation */
+      .hamburger.active .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
 
+      .hamburger.active .line2 {
+        opacity: 0;
+      }
 
+      .hamburger.active .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
 
-    /* Responsive adjustments */
-  </style>
-</head>
+      @media (max-width: 768px) {
+        .search-box-top {
+          position: static;
+          /* allow it to scroll naturally */
+          transform: none;
+          margin-top: 20px;
+        }
+      }
 
-<body>
+      /* Responsive adjustments */
+    </style>
+  </head>
 
-
-
-
-
-
-  <nav class="navbar" id="navbar">
-    <div class="nav-title">Quick Cook</div>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <div class="hamburger" onclick="toggleMenu()">
-      <div class="line1"></div>
-      <div class="line2"></div>
-      <div class="line3"></div>
-    </div>
-  </nav>
-
-
-
-  <div class="container">
-    <h1>Your <span>Smart Meal Planner</span></h1>
-    <p class="subtext">Type ingredients and get recipes in seconds</p>
-
-    <div class="input-group">
-      <input type="text" id="searchIngredient" placeholder="e.g., tomatoes, chicken..." />
-    </div>
-    <br>
-    <button class="generate-btn" onclick="searchRecipes('searchIngredient')" id="runawayBtn">Generate</button>
-  </div>
-
-
-
-  <!-- Recipe results -->
-  <div id="results" class="recipe-grid"></div>
-
-  <!-- Search More button, initially hidden -->
-  <div class="search-more-container" id="searchMoreContainer" style="display: none;">
-    <button id="searchMoreBtn" class="search-more-btn">Search More</button>
-  </div>
-
-  <!-- Recipe details overlay -->
-  <div id="recipeOverlay" class="recipe-overlay" style="display: none;">
-    <div class="recipe-details">
-      <div class="recipe-header">
-        <h2 id="recipeTitle"></h2>
-        <button onclick="closeOverlay()" class="close-btn">×</button>
+  <body>
+    <nav class="navbar" id="navbar">
+      <div class="nav-title">Quick Cook</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="hamburger" onclick="toggleMenu()">
+        <div class="line1"></div>
+        <div class="line2"></div>
       </div>
+    </nav>
 
-      <div class="flex-box">
-        <div class="recipeImage1">
-          <img id="recipeImage" alt="Recipe Image">
+    <div class="container">
+      <h1>Your <span>Smart Meal Planner</span></h1>
+      <p class="subtext">Type ingredients and get recipes in seconds</p>
 
+      <div class="input-group">
+        <input
+          type="text"
+          id="searchIngredient"
+          placeholder="e.g., tomatoes, chicken..."
+        />
+      </div>
+      <br />
+      <button
+        class="generate-btn"
+        onclick="searchRecipes('searchIngredient')"
+        id="runawayBtn"
+      >
+        Generate
+      </button>
+    </div>
+
+    <!-- Recipe results -->
+    <div id="results" class="recipe-grid"></div>
+
+    <!-- Search More button, initially hidden -->
+    <div
+      class="search-more-container"
+      id="searchMoreContainer"
+      style="display: none"
+    >
+      <button id="searchMoreBtn" class="search-more-btn">Search More</button>
+    </div>
+
+    <!-- Recipe details overlay -->
+    <div id="recipeOverlay" class="recipe-overlay" style="display: none">
+      <div class="recipe-details">
+        <div class="recipe-header">
+          <h2 id="recipeTitle"></h2>
+          <button onclick="closeOverlay()" class="close-btn">×</button>
         </div>
 
-        <div class="r1">
-          <div class="recipe-ingredients">
-            <h3>Ingredients</h3>
-            <ul id="recipeIngredientsList"></ul>
+        <div class="flex-box">
+          <div class="recipeImage1">
+            <img id="recipeImage" alt="Recipe Image" />
           </div>
 
-          <div class="recipe-info">
-            <p>Category: <span id="recipeCategory"></span></p>
-            <p>Origin: <span id="recipeArea"></span></p>
-          </div>
-          <div class="recipe-instructions">
-            <h3>Instructions</h3>
-            <p id="recipeInstructions"></p>
+          <div class="r1">
+            <div class="recipe-ingredients">
+              <h3>Ingredients</h3>
+              <ul id="recipeIngredientsList"></ul>
+            </div>
+
+            <div class="recipe-info">
+              <p>Category: <span id="recipeCategory"></span></p>
+              <p>Origin: <span id="recipeArea"></span></p>
+            </div>
+            <div class="recipe-instructions">
+              <h3>Instructions</h3>
+              <p id="recipeInstructions"></p>
+            </div>
           </div>
         </div>
-
+        <center>
+          <button onclick="deleteRecipe()" class="delete-btn">
+            Remove Recipe
+          </button>
+        </center>
       </div>
-      <center>
-        <button onclick="deleteRecipe()" class="delete-btn">Remove Recipe</button>
-      </center>
     </div>
-  </div>
 
-
-
-
-  <!-- Loading recipes indicator... -->
-  <div id="loading" class="loading-overlay" style="display: none;">
-    <div class="loading-box">
-      <img src="assets/gif/loading.gif" alt="Loading..." class="loading-gif" />
-      <p>Recipe is being cooked...</p>
+    <!-- Loading recipes indicator... -->
+    <div id="loading" class="loading-overlay" style="display: none">
+      <div class="loading-box">
+        <img
+          src="assets/gif/loading.gif"
+          alt="Loading..."
+          class="loading-gif"
+        />
+        <p>Recipe is being cooked...</p>
+      </div>
     </div>
-  </div>
-  <div id="customAlert" class="custom-alert">
-    <p></p>
-  </div>
+    <div id="customAlert" class="custom-alert">
+      <p></p>
+    </div>
 
+    <script src="script.js"></script>
+    <script src="js/runawaybutton.js"></script>
 
-
-  <script src="script.js"></script>
-  <script src="js/runawaybutton.js"></script>
-
-
-  <script>
-    function toggleMenu() {
-      const navLinks = document.querySelector('.nav-links');
-      const hamburger = document.querySelector('.hamburger');
-      navLinks.classList.toggle('active');
-      hamburger.classList.toggle('active');
-    }
-  </script>
-</body>
-
+    <script>
+      function toggleMenu() {
+        const navLinks = document.querySelector(".nav-links");
+        const hamburger = document.querySelector(".hamburger");
+        navLinks.classList.toggle("active");
+        hamburger.classList.toggle("active");
+      }
+    </script>
+  </body>
 </html>
