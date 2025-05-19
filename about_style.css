@@ -1,0 +1,188 @@
+/* Reset & base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f2f2f2;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* Navbar background and layout */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #234298;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Nav title */
+.nav-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* Nav list */
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Nav list items */
+.nav-links li {
+  margin-left: 2rem;
+}
+
+/* Nav links */
+.nav-links a {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #1d4ed8;
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: background-color 0.3s;
+}
+
+/* Hover and active states */
+.nav-links a:hover,
+.nav-links a.active {
+  background-color: #3b82f6;
+}
+
+/* Background image */
+.background {
+  background-image: url("assets/images/bg.png");
+  background-repeat: repeat;
+  background-size: contain;
+  min-height: 100vh;
+}
+
+/* Content area */
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* About card */
+.about-card {
+  background-color: white;
+  max-width: 900px;
+  width: 100%;
+  padding: 40px;
+  border-radius: 50px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.about-card h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.about-card h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.about-card p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+/* Hamburger animation */
+      .hamburger.active .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+
+      .hamburger.active .line2 {
+        opacity: 0;
+      }
+
+      .hamburger.active .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
+
+.hamburger {
+        display: none;
+        cursor: pointer;
+      }
+
+      .hamburger div {
+        width: 25px;
+        height: 3px;
+        background-color: #333;
+        margin: 5px;
+        transition: all 0.3s ease;
+      }
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .nav-links {
+          position: absolute;
+          right: 0;
+          top: 70px;
+          background-color: #fff;
+          width: 100%;
+          flex-direction: column;
+          align-items: center;
+          padding: 1rem 0;
+          box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+          transform: translateY(-150%);
+          transition: transform 0.5s ease-in;
+          z-index: 100;
+        }
+         .nav-links.active {
+          transform: translateY(0);
+        }
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+   .nav-links li {
+          margin: 1rem 0;
+        }
+  .navbar ul {
+    flex-direction: column;
+    width: 100%;
+    padding-top: 10px;
+  }
+
+  .navbar li a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .about-card {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .about-card h1 {
+    font-size: 28px;
+  }
+
+  .about-card h3 {
+    font-size: 20px;
+  }
+
+  .about-card p {
+    font-size: 16px;
+  }
+  .hamburger {
+          display: block;
+        }
+}

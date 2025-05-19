@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About | Quick Cook</title>
+    <link rel="stylesheet" href="about_style.css" />
+  </head>
+  <body>
+    <div class="background">
+      <nav class="navbar">
+        <div class="nav-title">Quick Cook</div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a class="active" href="about.html">About</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">
+          <div class="line1"></div>
+          <div class="line2"></div>
+        </div>
+      </nav>
+
+      <main class="content">
+        <div class="about-card">
+          <h1>
+            &nbsp;About<img
+              src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif"
+              width="40"
+              alt="Tech Stack Icon"
+            />
+          </h1>
+
+          <p>
+            <strong>Group Project for Web Engineering Course</strong
+            ><br /><br />
+            <strong>Members:</strong><br />
+            Ahmad Nasir - 2233001<br />
+            Zafar Abbas - 2233472<br />
+            Salman Ahmad - 2233599<br />
+            Awais Akram - 2233285<br /><br />
+            We have built this semester project to fulfill the requirements
+            given to us by our course instructor. The project demonstrates our
+            understanding and application of web technologies including HTML,
+            CSS, JavaScript, and API integration.<br /><br />
+            <strong>Abstract:</strong><br />
+            This project, Quick Cook, allows users to discover and generate
+            recipes based on ingredients and images provided by the user. We
+            have integrated the MealDB API to display recipes dynamically and
+            offer a seamless cooking experience.
+          </p>
+        </div>
+      </main>
+    </div>
+    <script>
+      function toggleMenu() {
+        const navLinks = document.querySelector(".nav-links");
+        const hamburger = document.querySelector(".hamburger");
+        navLinks.classList.toggle("active");
+        hamburger.classList.toggle("active");
+      }
+    </script>
+  </body>
+</html>
